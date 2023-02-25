@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Wise Optimise</string>
+    <string name="optimise">Optimise</string>
+    <string name="todo">TODO</string>
 </resources>
