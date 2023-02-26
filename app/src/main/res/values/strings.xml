@@ -2,4 +2,6 @@
     <string name="app_name">Wise Optimise</string>
     <string name="optimise">Optimise</string>
     <string name="todo">TODO</string>
+    <string name="battery_info">Battery Info</string>
+    <string name="app_usage">App Usage</string>
 </resources>

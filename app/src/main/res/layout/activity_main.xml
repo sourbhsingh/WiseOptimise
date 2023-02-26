@@ -62,4 +62,13 @@ android:background="@drawable/color_gradient"
         app:layout_constraintTop_toBottomOf="@+id/progressBar5"
         app:layout_constraintVertical_bias="0.041" />
 
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/BUTTOM_NEVIGATION"
+        android:layout_width="427dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu" />
+
 </android.support.constraint.ConstraintLayout>
