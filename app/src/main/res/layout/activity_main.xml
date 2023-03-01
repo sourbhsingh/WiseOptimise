@@ -33,7 +33,7 @@ android:background="@drawable/color_gradient"
         android:layout_height="60dp"
         android:fontFamily="cursive"
         android:gravity="center|clip_vertical"
-        android:text="0%"
+        android:text="Hello World!"
         android:textColor="#9D00FF "
         android:textColorHighlight="#FFEB3B"
         android:textColorHint="#FFEB3B"
@@ -79,5 +79,18 @@ android:background="@drawable/color_gradient"
         app:layout_constraintTop_toBottomOf="@+id/button2"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar5"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar5"
+        app:layout_constraintStart_toStartOf="@+id/progressBar5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/editbox_dropdown_dark_frame"
+        tools:ignore="ImageContrastCheck" />
 
 </android.support.constraint.ConstraintLayout>
