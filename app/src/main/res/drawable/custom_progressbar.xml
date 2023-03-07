@@ -15,7 +15,7 @@
       android:gravity="bottom">
    <shape>
     <corners android:radius="5dip"/>
-    <solid android:color="#FFBE00"/>
+    <solid android:color="#FFEB3B"/>
     <stroke
         android:width="5dp"
         android:color="#616161" />

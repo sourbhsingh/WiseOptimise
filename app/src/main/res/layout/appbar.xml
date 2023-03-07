@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@android:color/holo_orange_light"
+    android:background="#ffccff"
     android:id="@+id/mytoolBar"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     >
@@ -15,6 +15,7 @@
         android:id="@+id/menubar"
         android:layout_width="40dp"
         android:layout_height="30dp"
+        android:onClick="Menu"
         app:layout_constraintBottom_toBottomOf="@+id/apkName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
@@ -27,7 +28,7 @@
         android:id="@+id/menubadfr"
         android:layout_width="40dp"
         android:layout_height="30dp"
-
+         android:onClick="Settings"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/apkName"
         app:layout_constraintEnd_toEndOf="parent"
