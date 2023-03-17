@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -88,8 +89,17 @@ public class OptimiseFragment extends Fragment implements View.OnClickListener{
             bluetoothAdapter.disable();
             Toast.makeText(getContext(), "Bluetooth Disabled", Toast.LENGTH_SHORT).show();
         }
+        disableWifi();
     }
 
+    public void disableWifi()
+    {
+        WifiManager wifi = (WifiManager) getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        wifi.setWifiEnabled(false);
+
+
+
+    }
 
     @Override
     public void onClick(View v) {

@@ -1,10 +1,18 @@
 package com.example.wiseoptimise;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -13,6 +21,7 @@ import android.view.ViewGroup;
  */
 public class BatteryInfoTab extends Fragment {
 
+     TextView textView ;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,10 +62,50 @@ public class BatteryInfoTab extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_battery_info_tab, container, false);
+        View view = inflater.inflate(R.layout.fragment_battery_info_tab, container, false);
+        textView = view.findViewById(R.id.information);
+        textView.setText(getBatteryPercentage(getContext()));
+        return view ;
     }
+
+
+    public static String getBatteryPercentage(Context context)
+    {
+        String bstatus       = "isChrg=false usbChrg=false acChrg=false wlChrg=false 0% t=70°F";
+        IntentFilter iFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = context.registerReceiver(null, iFilter);
+        int status           = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        boolean isCharging   = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                status == BatteryManager.BATTERY_STATUS_FULL;
+        int level            = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale            = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+        float batteryPct     = level * 100 / (float)scale;
+        //How are we charging?
+        int chargePlug       = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+        boolean usbCharge    = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
+        boolean acCharge     = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+        boolean wlCharge     = chargePlug == BatteryManager.BATTERY_PLUGGED_WIRELESS;
+        int temp             = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE,0);
+        float tempTwo        = ((float) temp) / 10;
+        double d             = CelsiusToFahrenheit(tempTwo);
+        bstatus              = String.format(Locale.US, "isChrg=%b usbChrg=%b acChrg=%b wlChrg=%b %.0f%% t=%.2f°F",
+                isCharging,
+                usbCharge,
+                acCharge,
+                wlCharge,
+                batteryPct,
+                d);
+        return bstatus;
+    }
+
+    private static double CelsiusToFahrenheit(float tempTwo) {
+       double temp = (tempTwo * (9/5)) + 32 ;
+       return  temp ;
+    }
+
 }

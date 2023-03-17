@@ -6,11 +6,16 @@
     tools:context=".BatteryInfoTab">
 
     <!-- TODO: Update blank fragment layout -->
+
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/battery_info"
+        android:id="@+id/information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
-        style="@style/TextAppearance.AppCompat.Display1"/>
+        android:text="TextView"
+        android:textSize="20sp" />
+
 
 </FrameLayout>
