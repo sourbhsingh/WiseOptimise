@@ -5,8 +5,14 @@
 
             <gradient
 
-                android:startColor = "#ffccff"
-                android:endColor = "#66ffff"
+                android:startColor = "@color/white"
+                android:endColor = "#9FD9A1"
+
+                android:useLevel="false"
+
+                  android:centerColor="@color/white"
+
+
                 android:angle = "40"
                 android:type = "linear" />
 

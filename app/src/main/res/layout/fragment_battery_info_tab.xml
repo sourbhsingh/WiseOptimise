@@ -7,15 +7,22 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="246dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center">
 
-    <TextView
-        android:id="@+id/information"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textSize="20sp" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
 
 
 </FrameLayout>

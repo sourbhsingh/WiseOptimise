@@ -21,6 +21,7 @@ android:background="@drawable/color_gradient"
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
+android:background="#4CAF50"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/hello_blank_fragment"
