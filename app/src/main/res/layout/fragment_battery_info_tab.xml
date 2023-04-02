@@ -1,28 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BatteryInfoTab">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="246dp"
-        android:layout_height="140dp"
-        android:layout_gravity="center">
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:dividerPadding="60dp"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13">
 
-        <TextView
-            android:id="@+id/information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"
-            android:text="TextView"
-            android:textSize="20sp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+
+                android:layout_height="60dp"
+                android:width="100dp"
+                android:height="60dp"
+                android:text="Battery Health"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/bh"
+                android:layout_width="164dp"
+                android:layout_height="60dp"
+                android:width="150dp"
+                android:height="60dp"
+                android:text="" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="181dp"
+                android:layout_height="60dp"
+                android:width="100dp"
+                android:height="60dp"
+
+                android:text="Voltage"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/voltage"
+                android:layout_width="wrap_content"
+                android:height="60dp"
+                android:layout_height="60dp"
+                android:width="150dp"
+
+                android:text="" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="132dp"
+
+                android:layout_height="60dp"
+                android:width="100dp"
+                android:height="60dp"
+                android:text="Temperature"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:width="150dp"
+                android:height="60dp"
+
+                android:text="" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:width="100dp"
+                android:height="60dp"
+
+                android:text="Battery Type"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/BatteryType"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:width="150dp"
+                android:height="60dp"
+
+                android:text="" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
 
 
+                android:layout_height="60dp"
+                android:width="100dp"
+                android:height="60dp"
+                android:text="Charging Source"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/chargingsource"
+                android:layout_width="wrap_content"
+                android:height="60dp"
+                android:layout_height="60dp"
+                android:width="150dp"
+
+                android:text="" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+
+                android:layout_height="60dp"
+                android:width="100dp"
+                android:height="60dp"
+                android:text="Charging Status"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/charStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:width="150dp"
+                android:height="60dp"
+
+                android:text="" />
+        </TableRow>
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

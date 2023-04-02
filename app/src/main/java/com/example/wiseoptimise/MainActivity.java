@@ -6,6 +6,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     public void Menu(View view) {
         Toast.makeText(this, "Menu", Toast.LENGTH_SHORT).show();
     }
-
 
 //    public void DisableInternet(){
 //

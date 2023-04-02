@@ -1,5 +1,7 @@
 package com.example.wiseoptimise;
 
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -11,100 +13,133 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BatteryInfoTab#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class BatteryInfoTab extends Fragment {
+    Context _context;
+    PendingIntent pi;
+  public TextView batteryHealth , voltage , temperature , batterytype, charging_sourse , status ;
 
-     TextView textView ;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+    private void setHealth(Intent intent) {
+        int val = intent.getIntExtra("health",0);
+        switch (val){
+            case BatteryManager.BATTERY_HEALTH_UNKNOWN:
+                batteryHealth.setText("Unknown") ;
+                break;
+            case BatteryManager.BATTERY_HEALTH_GOOD:
+                batteryHealth.setText("Good");
+                break ;
+            case BatteryManager.BATTERY_HEALTH_OVERHEAT:
+                batteryHealth.setText("Overheated");
+                break;
+            case BatteryManager.BATTERY_HEALTH_DEAD:
+                batteryHealth.setText("Dead");
+                break;
+            case BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE:
+                batteryHealth.setText("Over Voltage");
+                break;
+            case BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE:
+                batteryHealth.setText("Unspecified Failure");
+                break;
+            case BatteryManager.BATTERY_HEALTH_COLD:
+                batteryHealth.setText("Cold");
+                break;
+            default:
+                batteryHealth.setText("Unable to fetch");
+        }
+    }
 
     public BatteryInfoTab() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BatteryInfoTab.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BatteryInfoTab newInstance(String param1, String param2) {
-        BatteryInfoTab fragment = new BatteryInfoTab();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-
+    private BroadcastReceiver myBroadcastReceiver;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_battery_info_tab, container, false);
-        textView = view.findViewById(R.id.information);
-        textView.setText(getBatteryPercentage(getContext()));
+        batteryHealth = view.findViewById(R.id.bh);
+        temperature = view.findViewById(R.id.temperature);
+        status = view.findViewById(R.id.charStatus);
+        voltage = view.findViewById(R.id.voltage);
+        batterytype = view.findViewById(R.id.BatteryType);
+        charging_sourse = view.findViewById(R.id.chargingsource);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        setup();
+        getContext().registerReceiver(myBroadcastReceiver, intentFilter);
+
         return view ;
     }
-
-
-    public static String getBatteryPercentage(Context context)
+    private void setup()
     {
-        String bstatus       = "isChrg=false usbChrg=false acChrg=false wlChrg=false 0% t=70°F";
-        IntentFilter iFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = context.registerReceiver(null, iFilter);
-        int status           = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-        boolean isCharging   = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL;
-        int level            = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-        int scale            = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-        float batteryPct     = level * 100 / (float)scale;
-        //How are we charging?
-        int chargePlug       = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-        boolean usbCharge    = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
-        boolean acCharge     = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
-        boolean wlCharge     = chargePlug == BatteryManager.BATTERY_PLUGGED_WIRELESS;
-        int temp             = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE,0);
-        float tempTwo        = ((float) temp) / 10;
-        double d             = CelsiusToFahrenheit(tempTwo);
-        bstatus              = String.format(Locale.US, "isChrg=%b usbChrg=%b acChrg=%b wlChrg=%b %.0f%% t=%.2f°F",
-                isCharging,
-                usbCharge,
-                acCharge,
-                wlCharge,
-                batteryPct,
-                d);
-        return bstatus;
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+       myBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                IntentFilter intentFilter = new IntentFilter();
+                intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+                if(Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())){
+                    float voltagetemp = (float) (intent.getIntExtra("voltage" ,0)*0.001);
+                    voltage.setText(voltagetemp+"V");
+                    setHealth(intent);
+                    batterytype.setText(intent.getStringExtra("technology"));
+                    getChargingSource(intent);
+                    float tempBat = (float) intent.getIntExtra("temperature",-1)/10 ;
+                    temperature.setText(tempBat+"'C");
+                    getchargingStatus(intent);
+
+                }
+            }
+        };
+
+
     }
 
-    private static double CelsiusToFahrenheit(float tempTwo) {
-       double temp = (tempTwo * (9/5)) + 32 ;
-       return  temp ;
+    private void getchargingStatus(Intent intent) {
+        int chstatus = intent.getIntExtra("status",-1);
+        switch (chstatus){
+            case BatteryManager.BATTERY_STATUS_CHARGING:
+                   status.setText("Charging");
+                   break ;
+            case BatteryManager.BATTERY_STATUS_DISCHARGING:
+                status.setText("DisCharging");
+                break ;
+            case BatteryManager.BATTERY_STATUS_FULL:
+                status.setText("Battery Full");
+                break ;
+            case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
+                status.setText("Not Charging");
+                break ;
+            default: status.setText("unknown");
+        }
     }
 
+    private void getChargingSource(Intent intent) {
+        int status  = intent.getIntExtra("plugged",-1);
+        switch (status){
+            case BatteryManager.BATTERY_PLUGGED_AC:
+                charging_sourse.setText(" AC");
+                break;
+            case BatteryManager.BATTERY_PLUGGED_USB:
+                charging_sourse.setText(" USB");
+                break;
+            case BatteryManager.BATTERY_PLUGGED_WIRELESS:
+                charging_sourse.setText(" WireLess");
+                break;
+            case BatteryManager.BATTERY_PLUGGED_DOCK:C:
+                charging_sourse.setText(" Dock");
+                break;
+            default:
+                charging_sourse.setText("Not Plugged");
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getContext().unregisterReceiver(myBroadcastReceiver);
+    }
 }
