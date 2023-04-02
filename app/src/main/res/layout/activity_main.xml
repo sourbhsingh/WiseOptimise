@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@drawable/color_gradient"
+    android:background="@drawable/color_gradient"
     tools:context=".MainActivity">
 
 
@@ -15,15 +15,14 @@ android:background="@drawable/color_gradient"
         tools:layout_editor_absoluteY="-21dp" />
 
 
+    <include layout="@layout/appbar" />
 
-  <include layout="@layout/appbar"/>
 
-
- <com.google.android.material.tabs.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-android:background="#4CAF50"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#4CAF50"
         android:contentDescription="@string/hello_blank_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +37,23 @@ android:background="#4CAF50"
         android:contentDescription="@string/app_usage"
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#4CAE50"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintEnd_toStartOf="@+id/include"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toEndOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/baseline_settings_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
