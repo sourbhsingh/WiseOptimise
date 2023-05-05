@@ -1,62 +1,156 @@
 package com.example.wiseoptimise;
-
+import android.app.AppOpsManager;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
+import android.os.Process;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Menu;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AppUsageTab#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 public class AppUsageTab extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final int MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS = 100;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AppUsageTab() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AppUsageTab.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AppUsageTab newInstance(String param1, String param2) {
-        AppUsageTab fragment = new AppUsageTab();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private ListView appList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_app_usage_tab, container, false);
+        View view = inflater.inflate(R.layout.fragment_app_usage_tab, container, false);
+
+        appList = view.findViewById(R.id.app_list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+        appList.setAdapter(adapter);
+
+        if (checkForPermission()) {
+            displayUsageStats(adapter);
+        } else {
+            requestPermission();
+        }
+
+        return view;
     }
+
+    private boolean checkForPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AppOpsManager appOps = (AppOpsManager) getActivity().getSystemService(Context.APP_OPS_SERVICE);
+            int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, Process.myUid(), getActivity().getPackageName());
+            return mode == AppOpsManager.MODE_ALLOWED;
+        } else {
+            return true;
+        }
+    }
+
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !checkForPermission()) {
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivity(intent);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                displayUsageStats((ArrayAdapter<String>) appList.getAdapter());
+            } else {
+                Snackbar.make(appList, "Permission denied.", Snackbar.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void displayUsageStats(ArrayAdapter<String> adapter) {
+        UsageStatsManager usageStatsManager = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            usageStatsManager = (UsageStatsManager) getActivity().getSystemService(Context.USAGE_STATS_SERVICE);
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, -1);
+        long start = cal.getTimeInMillis();
+        long end = System.currentTimeMillis();
+        List<UsageStats> usageStatsList = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            usageStatsList = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, start, end);
+        }
+
+        Map<String, Long> appUsageTimeMap = new HashMap<>();
+        for (UsageStats usageStats : usageStatsList) {
+            String packageName = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                packageName = usageStats.getPackageName();
+            }
+            long timeUsed = 0;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                timeUsed = usageStats.getTotalTimeInForeground();
+            }
+            if (timeUsed > 0) {
+                appUsageTimeMap.put(packageName, timeUsed);
+            }
+        }
+
+        List<Map.Entry<String, Long>> sortedList = new ArrayList<>(appUsageTimeMap.entrySet());
+        Collections.sort(sortedList, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+
+        adapter.clear();
+        for (Map.Entry<String, Long> entry : sortedList) {
+            String packageName = entry.getKey();
+            long timeUsedInMillis = entry.getValue();
+            String appName = getAppNameFromPackage(packageName);
+            String timeUsed = getTimeUsedString(timeUsedInMillis);
+            adapter.add(appName + " - " + timeUsed);
+        }
+    }
+
+    private String getTimeUsedString(long timeUsedInMillis) {
+        long seconds = (timeUsedInMillis / 1000) % 60;
+        long minutes = (timeUsedInMillis / (1000 * 60)) % 60;
+        long hours = (timeUsedInMillis / (1000 * 60 * 60));
+        return String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
+    private String getAppNameFromPackage(String packageName) {
+        PackageManager packageManager = getActivity().getPackageManager();
+        String appName = packageName;
+        try {
+            appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        // Remove the package name prefix from the app name
+        int index = appName.lastIndexOf(".");
+        if (index >= 0) {
+            appName = appName.substring(index + 1);
+        }
+        return appName;
+    }
+
 }
