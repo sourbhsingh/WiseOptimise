@@ -5,8 +5,8 @@
 
             <gradient
 
-                android:startColor = "@color/white"
-                android:endColor = "#9FD9A1"
+                android:startColor = "#B4A9D5"
+                android:endColor = "#624BA8"
 
                 android:useLevel="false"
 

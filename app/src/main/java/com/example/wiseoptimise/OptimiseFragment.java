@@ -89,20 +89,23 @@ public class OptimiseFragment extends Fragment implements View.OnClickListener{
             bluetoothAdapter.disable();
             Toast.makeText(getContext(), "Bluetooth Disabled", Toast.LENGTH_SHORT).show();
         }
-        disableWifi();
     }
 
-    public void disableWifi()
-    {
-        WifiManager wifi = (WifiManager) getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        wifi.setWifiEnabled(false);
 
-
-
-    }
 
     @Override
     public void onClick(View v) {
         disableBluetooth();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        openBatterySaverSettings();
+    }
+    private void openBatterySaverSettings() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.android.settings", "com.android.settings.Settings$BatterySaverSettingsActivity");
+        startActivity(intent);
     }
 }

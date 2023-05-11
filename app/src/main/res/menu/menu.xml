@@ -5,7 +5,8 @@
     <item
         android:id="@+id/optimseNavigation"
         android:icon="@drawable/chargeoptimse"
-        android:title="@string/optimise" />
+        android:title="@string/optimise"
+        />
     <item
         android:id="@+id/battery_info"
         android:icon="@drawable/battery"

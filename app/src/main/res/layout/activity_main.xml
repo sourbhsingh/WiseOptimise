@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/color_gradient"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -22,13 +22,15 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4CAF50"
+        android:background="#262135"
         android:contentDescription="@string/hello_blank_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:tabSelectedTextColor="#EEE9AE"
+        app:tabTextColor="#FFFDFD" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
@@ -46,7 +48,7 @@
         android:id="@+id/imageButton"
         android:layout_width="65dp"
         android:layout_height="55dp"
-        android:backgroundTint="#4CAE50"
+        android:backgroundTint="#262135"
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toStartOf="@+id/include"
         app:layout_constraintHorizontal_bias="0.136"
