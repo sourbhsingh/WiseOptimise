@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,9 +103,16 @@ public class OptimiseFragment extends Fragment implements View.OnClickListener{
         }
         openBatterySaverSettings();
     }
+
     private void openBatterySaverSettings() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setClassName("com.android.settings", "com.android.settings.Settings$BatterySaverSettingsActivity");
+        Intent intent = new Intent();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            intent.setAction(Settings.ACTION_BATTERY_SAVER_SETTINGS);
+        } else {
+            intent.setClassName("com.android.settings", "com.android.settings.appSettings$BatterySaverSettingsActivity");
+        }
+
         startActivity(intent);
     }
+
 }

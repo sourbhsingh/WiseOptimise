@@ -1,9 +1,5 @@
 package com.example.wiseoptimise;
 
-import androidx.annotation.NonNull;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
      tab.setupWithViewPager(viewPager);
     }
     public  void  openSettings(){
-        Intent intent = new Intent(this,Settings.class);
+        Intent intent = new Intent(this, appSettings.class);
         startActivity(intent);
     }
 
     public void Settings(View view) {
-        Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "appSettings", Toast.LENGTH_SHORT).show();
     }
 
     public void Menu(View view) {
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 //            Intent panelIntent = new
-//                    Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY);
+//                    Intent(appSettings.Panel.ACTION_INTERNET_CONNECTIVITY);
 //            startActivityForResult(panelIntent, 0);
 //        } else {
 //            // for previous android version
