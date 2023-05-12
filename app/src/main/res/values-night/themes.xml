@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.WiseOptimise" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#4CAF50</item>
-        <item name="colorPrimaryDark">#4CAF50</item>
-        <item name="colorAccent">#4CAF50</item>
+        <item name="colorPrimary">#262135</item>
+        <item name="colorPrimaryDark">#262135</item>
+        <item name="colorAccent">#262135</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

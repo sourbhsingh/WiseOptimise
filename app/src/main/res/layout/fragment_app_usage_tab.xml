@@ -2,13 +2,24 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+     android:layout_marginTop="?attr/actionBarSize"
+    android:layout_marginBottom="50dp"
     android:layout_height="match_parent"
+    android:layout_marginStart="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AppUsageTab">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:outlineSpotShadowColor="#262135"
 
-    <!-- TODO: Update blank fragment layout -->
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
     <ListView
         android:id="@+id/app_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>
