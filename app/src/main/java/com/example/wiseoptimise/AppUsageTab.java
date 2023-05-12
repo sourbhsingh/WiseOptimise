@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,7 +89,6 @@ public class AppUsageTab extends Fragment {
             }
         }
     }
-
     private void displayUsageStats(ArrayAdapter<String> adapter) {
         UsageStatsManager usageStatsManager = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -102,7 +103,9 @@ public class AppUsageTab extends Fragment {
             usageStatsList = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, start, end);
         }
 
-        Map<String, Long> appUsageTimeMap = new HashMap<>();
+        PackageManager packageManager = getActivity().getPackageManager();
+        List<AppUsageData> appUsageDataList = new ArrayList<>();
+
         for (UsageStats usageStats : usageStatsList) {
             String packageName = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -113,22 +116,74 @@ public class AppUsageTab extends Fragment {
                 timeUsed = usageStats.getTotalTimeInForeground();
             }
             if (timeUsed > 0) {
-                appUsageTimeMap.put(packageName, timeUsed);
+                try {
+                    // Get the app name and icon
+                    String appName = (String) packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA));
+                    Drawable appIcon = packageManager.getApplicationIcon(packageName);
+
+                    // Create an instance of AppUsageData and add it to the list
+                    AppUsageData appUsageData = new AppUsageData(appName, appIcon, timeUsed);
+                    appUsageDataList.add(appUsageData);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
-        List<Map.Entry<String, Long>> sortedList = new ArrayList<>(appUsageTimeMap.entrySet());
-        Collections.sort(sortedList, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+        // Sort the appUsageDataList based on usage time in descending order
+        Collections.sort(appUsageDataList, (o1, o2) -> Long.compare(o2.getTimeUsed(), o1.getTimeUsed()));
 
         adapter.clear();
-        for (Map.Entry<String, Long> entry : sortedList) {
-            String packageName = entry.getKey();
-            long timeUsedInMillis = entry.getValue();
-            String appName = getAppNameFromPackage(packageName);
-            String timeUsed = getTimeUsedString(timeUsedInMillis);
+        for (AppUsageData appUsageData : appUsageDataList) {
+            String appName = appUsageData.getAppName();
+            String timeUsed = getTimeUsedString(appUsageData.getTimeUsed());
+
+            // Append app name and time used to the adapter
             adapter.add(appName + " - " + timeUsed);
         }
     }
+
+//    private void displayUsageStats(ArrayAdapter<String> adapter) {
+//        UsageStatsManager usageStatsManager = null;
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//            usageStatsManager = (UsageStatsManager) getActivity().getSystemService(Context.USAGE_STATS_SERVICE);
+//        }
+//        Calendar cal = Calendar.getInstance();
+//        cal.add(Calendar.DAY_OF_YEAR, -1);
+//        long start = cal.getTimeInMillis();
+//        long end = System.currentTimeMillis();
+//        List<UsageStats> usageStatsList = null;
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//            usageStatsList = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, start, end);
+//        }
+//
+//        Map<String, Long> appUsageTimeMap = new HashMap<>();
+//        for (UsageStats usageStats : usageStatsList) {
+//            String packageName = null;
+//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//                packageName = usageStats.getPackageName();
+//            }
+//            long timeUsed = 0;
+//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//                timeUsed = usageStats.getTotalTimeInForeground();
+//            }
+//            if (timeUsed > 0) {
+//                appUsageTimeMap.put(packageName, timeUsed);
+//            }
+//        }
+//
+//        List<Map.Entry<String, Long>> sortedList = new ArrayList<>(appUsageTimeMap.entrySet());
+//        Collections.sort(sortedList, (o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+//
+//        adapter.clear();
+//        for (Map.Entry<String, Long> entry : sortedList) {
+//            String packageName = entry.getKey();
+//            long timeUsedInMillis = entry.getValue();
+//            String appName = getAppNameFromPackage(packageName);
+//            String timeUsed = getTimeUsedString(timeUsedInMillis);
+//            adapter.add(appName + " - " + timeUsed);
+//        }
+//    }
 
     private String getTimeUsedString(long timeUsedInMillis) {
         long seconds = (timeUsedInMillis / 1000) % 60;

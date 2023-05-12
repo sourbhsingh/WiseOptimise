@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="480dp"
         android:layout_marginTop="25dp"
-        android:layout_marginStart="12dp"
-        android:padding="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:paddingTop="20dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="8dp"
@@ -33,7 +33,7 @@
                 android:id="@+id/imageView3333"
                 android:layout_width="36dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="28dp"
                 android:src="@drawable/battery"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
                 android:id="@+id/imageView4444"
                 android:layout_width="36dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="108dp"
                 android:src="@drawable/volatage"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
                 android:id="@+id/imageView555"
                 android:layout_width="36dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="184dp"
                 android:src="@drawable/temp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                 android:id="@+id/imageView6666"
                 android:layout_width="36dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="260dp"
                 android:src="@drawable/type"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
                 android:id="@+id/imageView77777"
                 android:layout_width="36dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="336dp"
                 android:src="@drawable/sourceforcharge"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
                 android:id="@+id/imageView88888"
                 android:layout_width="36dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="412dp"
                 android:src="@drawable/chargingstatus"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             android:dividerPadding="60dp"
             android:paddingTop="10dp"
             android:showDividers="middle"
@@ -132,9 +132,9 @@
                     android:layout_marginTop="8dp"
                     android:width="150dp"
                     android:height="60dp"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart" />
 
             </TableRow>
 
@@ -167,10 +167,10 @@
                     android:layout_marginTop="8dp"
                     android:width="150dp"
                     android:height="60dp"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text=""
 
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart" />
             </TableRow>
 
             <View
@@ -202,9 +202,9 @@
                     android:layout_marginTop="8dp"
                     android:width="150dp"
                     android:height="60dp"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart" />
             </TableRow>
 
             <View
@@ -236,9 +236,9 @@
                     android:layout_marginTop="8dp"
                     android:width="150dp"
                     android:height="60dp"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart" />
             </TableRow>
 
             <View
@@ -269,9 +269,9 @@
                     android:layout_marginTop="8dp"
                     android:width="150dp"
                     android:height="60dp"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart" />
             </TableRow>
 
             <View
@@ -303,9 +303,9 @@
                     android:layout_marginTop="8dp"
                     android:width="150dp"
                     android:height="60dp"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart" />
             </TableRow>
 
             <View

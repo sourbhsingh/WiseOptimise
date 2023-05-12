@@ -87,7 +87,7 @@ public class OptimiseFragment extends Fragment implements View.OnClickListener{
 
         if(bluetoothAdapter.isEnabled()) {
             bluetoothAdapter.disable();
-
+          
         }
     }
 
