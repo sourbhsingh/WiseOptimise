@@ -1,5 +1,7 @@
 package com.example.wiseoptimise;
 
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,19 +11,32 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     TabLayout tab ;
     ViewPager viewPager ;
     ImageButton imageButton;
+    ImageButton imageButton3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        imageButton3 = (ImageButton) findViewById(R.id.imageButton3);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
+        ImageButton imageButton3 = findViewById(R.id.imageButton3);
+        imageButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -49,17 +64,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Menu", Toast.LENGTH_SHORT).show();
     }
 
-//    public void DisableInternet(){
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//            Intent panelIntent = new
-//                    Intent(appSettings.Panel.ACTION_INTERNET_CONNECTIVITY);
-//            startActivityForResult(panelIntent, 0);
-//        } else {
-//            // for previous android version
-//            WifiManager wifiManager = (WifiManager)
-//                    this.getApplicationContext().getSystemService(WIFI_SERVICE);
-//            wifiManager.setWifiEnabled(false);
-//        }
-//    }
+
 }

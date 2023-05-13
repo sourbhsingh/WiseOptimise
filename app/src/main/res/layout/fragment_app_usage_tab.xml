@@ -34,8 +34,9 @@
             android:layout_marginTop="8dp"
             android:divider="@drawable/divider"
             android:dividerHeight="6dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="8dp" />
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

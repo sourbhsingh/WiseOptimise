@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/optimise_tab_24"
+            android:icon="@drawable/optimise_tab_24"
+            android:title="Optimise" />
+        <item
+            android:id="@+id/battery_info_tab_24"
+            android:icon="@drawable/battery_info_tab_24"
+            android:title="Battery Info" />
+        <item
+            android:id="@+id/app_usage_tab_24"
+            android:icon="@drawable/app_usage_tab_24"
+            android:title="App Usage Stats" />
+
+    </group>
+    <group android:checkableBehavior="single">
+
+    <item android:title="Profile">
+    <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/logout_icon"
+                android:title="Login" />
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/logout_icon"
+                android:title="Profile" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/logout_icon"
+                android:title="Logout" />
+
+    </menu>
+    </item>
+        </group>
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/share_24"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/rate_24"
+                android:title="Rate Us" />
+        </menu>
+    </item>
+</menu>
