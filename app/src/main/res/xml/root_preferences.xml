@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory app:title="@string/messages_header">
 
@@ -16,9 +17,15 @@
             app:useSimpleSummaryProvider="true" />
 
         <SwitchPreferenceCompat
-            app:key="notification"
-            app:title="@string/notification_title"
-            app:useSimpleSummaryProvider="true" />
+            android:key="battery_notification_switch"
+            android:title="Notifications"
+            android:defaultValue="true"
+            app:switchTextOn="On"
+            app:switchTextOff="Off"
+            />
+
+
+
 
     </PreferenceCategory>
 
