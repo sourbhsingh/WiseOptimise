@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,16 +73,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle the item click events here
         switch (item.getItemId()) {
             case R.id.optimise_tab_24:
-                Toast.makeText(this, "Clicked 1", Toast.LENGTH_SHORT).show();
-                // Handle the click event for this menu item
+                Toast.makeText(this, "Optimise Tab", Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.battery_info_tab_24:
-                Toast.makeText(this, "Clicked 2", Toast.LENGTH_SHORT).show();
-                // Handle the click event for this menu item
+                Toast.makeText(this, "Battery Info Tab", Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(1);
                 break;
             case R.id.app_usage_tab_24:
-                Toast.makeText(this, "Clicked 3", Toast.LENGTH_SHORT).show();
-                // Handle the click event for this menu item
+                Toast.makeText(this, "App Usage Tap", Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(2);
+
                 break;
             case R.id.Privacypolicy:
                 AppNavigation.openWebsite(this,"https://sourbhsingh.github.io/wiseoptimise.github.io/privacy.html");
@@ -126,4 +128,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onPause();
         unregisterReceiver(batteryLevelReceiver);
     }
+
+
 }
