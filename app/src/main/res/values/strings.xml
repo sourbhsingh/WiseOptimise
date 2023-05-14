@@ -42,4 +42,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="slogan">Maximize Battery Life, Optimize Performance.</string>
+    <string name="signature_hint">signature_hint</string>
+    <string name="notifications_title">notifications_title\n</string>
 </resources>

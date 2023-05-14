@@ -7,14 +7,15 @@
     android:layout_gravity="center"
     android:layout_marginTop="?attr/actionBarSize"
     android:layout_marginBottom="40dp"
-    android:paddingBottom="40dp">
+    android:paddingBottom="40dp"
+    style="@style/ScreenBackground">
 
     <androidx.cardview.widget.CardView
         android:layout_width="397dp"
         android:layout_height="match_parent"
 
         android:layout_gravity="center"
-
+        style="@style/ScreenBackground"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:outlineSpotShadowColor="#262135"
@@ -34,7 +35,8 @@
             android:divider="@drawable/divider"
             android:dividerHeight="6dp"
             android:paddingStart="10dp"
-            android:paddingEnd="8dp" />
+            android:paddingEnd="8dp"
+            style="@style/ScreenBackground"/>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

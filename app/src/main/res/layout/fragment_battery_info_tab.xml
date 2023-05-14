@@ -4,24 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BatteryInfoTab">
+    tools:context=".BatteryInfoTab"
+    style="@style/ScreenBackground"
+    >
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="480dp"
-        android:layout_marginTop="25dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
         android:paddingTop="20dp"
-        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="6dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/CardViewStyle"
+        >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -106,7 +109,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#262135" />
+               style="@style/Line" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -123,7 +126,9 @@
                     android:text="Battery Health"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    />
 
                 <TextView
                     android:id="@+id/bh"
@@ -134,14 +139,16 @@
                     android:height="60dp"
                     android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    style="@style/TextColor"
+                    />
 
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#262135" />
+                style="@style/Line" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -158,7 +165,9 @@
                     android:text="Voltage"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    />
 
                 <TextView
                     android:id="@+id/voltage"
@@ -170,14 +179,15 @@
                     android:gravity="center|start"
                     android:text=""
 
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    style="@style/TextColor"
+                    />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#262135" />
-
+                style="@style/Line" />
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -193,7 +203,9 @@
                     android:text="Temperature"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    />
 
                 <TextView
                     android:id="@+id/temperature"
@@ -204,14 +216,15 @@
                     android:height="60dp"
                     android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    style="@style/TextColor"
+                    />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#262135" />
-
+                style="@style/Line" />
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -227,7 +240,9 @@
                     android:text="Battery Type"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    />
 
                 <TextView
                     android:id="@+id/BatteryType"
@@ -238,14 +253,15 @@
                     android:height="60dp"
                     android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    style="@style/TextColor"
+                    />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#262135" />
-
+                style="@style/Line" />
             <TableRow>
 
                 <TextView
@@ -260,7 +276,9 @@
                     android:text="Charging Source"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    />
 
                 <TextView
                     android:id="@+id/chargingsource"
@@ -271,14 +289,15 @@
                     android:height="60dp"
                     android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    style="@style/TextColor"
+                    />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#262135" />
-
+                style="@style/Line" />
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -294,7 +313,9 @@
                     android:text="Charging Status"
                     android:textAlignment="center"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    />
 
                 <TextView
                     android:id="@+id/charStatus"
@@ -305,13 +326,15 @@
                     android:height="60dp"
                     android:gravity="center|start"
                     android:text=""
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    style="@style/TextColor"
+                    />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#262135" />
+                style="@style/Line" />
         </TableLayout>
 
     </androidx.cardview.widget.CardView>

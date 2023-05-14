@@ -1,11 +1,37 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.WiseOptimise" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#262135</item>
-        <item name="colorPrimaryDark">#262135</item>
-        <item name="colorAccent">#262135</item>
-        <item name="android:navigationBarColor">#262135</item>
+        <item name="colorPrimary">#8BC34A</item>
+        <item name="colorPrimaryDark">#8BC34A</item>
+        <item name="colorAccent">#8BC34A</item>
+
 
     </style>
+
+
+    <style name="ScreenBackground"><item name="android:background">#808080</item>  </style>
+    <style name="Line"><item name="android:background">#FFFFFF</item>  </style>
+    <style name="TextColor"><item name="android:textColor">#FFFFFF</item>  </style>
+    <style name="back_button_settings"><item name="android:backgroundTint">#777777</item>  </style>
+    <style name="settings_linear_bg"><item name="android:background">@drawable/round_back_darkmode  </item>  </style>
+
+
+
+    <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">#777777</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+    <style name="Theme.WiseOptimise.NavigationViewStyle" parent="Widget.Design.NavigationView">
+        <item name="android:background">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:tint">@color/white</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+
+    </style>
+
+
+
+
 </resources>
