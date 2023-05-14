@@ -1,5 +1,7 @@
 package com.example.wiseoptimise;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -15,11 +18,12 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private BatteryLevelReceiver batteryLevelReceiver;
 
+    ActionBarDrawerToggle drawerToggle;
     TabLayout tab ;
     ViewPager viewPager ;
     ImageButton imageButton;
@@ -33,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         imageButton3 = (ImageButton) findViewById(R.id.imageButton3);
         drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
 
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         ImageButton imageButton3 = findViewById(R.id.imageButton3);
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,10 +60,50 @@ public class MainActivity extends AppCompatActivity {
      ViewpagerOptimiseAdapter adapter = new ViewpagerOptimiseAdapter(getSupportFragmentManager());
      viewPager.setAdapter(adapter);
      tab.setupWithViewPager(viewPager);
+        tab.getTabAt(0).setIcon(R.drawable.optimise_tab_24);
+        tab.getTabAt(1).setIcon(R.drawable.battery_info_tab_24);
+        tab.getTabAt(2).setIcon(R.drawable.app_usage_tab_24);
     }
     public  void  openSettings(){
         Intent intent = new Intent(this, appSettings.class);
         startActivity(intent);
+    }
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle the item click events here
+        switch (item.getItemId()) {
+            case R.id.optimise_tab_24:
+                Toast.makeText(this, "Clicked 1", Toast.LENGTH_SHORT).show();
+                // Handle the click event for this menu item
+                break;
+            case R.id.battery_info_tab_24:
+                Toast.makeText(this, "Clicked 2", Toast.LENGTH_SHORT).show();
+                // Handle the click event for this menu item
+                break;
+            case R.id.app_usage_tab_24:
+                Toast.makeText(this, "Clicked 3", Toast.LENGTH_SHORT).show();
+                // Handle the click event for this menu item
+                break;
+            case R.id.Privacypolicy:
+                AppNavigation.openWebsite(this,"https://sourbhsingh.github.io/wiseoptimise.github.io/privacy.html");
+
+                break;
+            case R.id.nav_share:
+
+                Toast.makeText(this, "Sharing this Apk", Toast.LENGTH_SHORT).show();
+                AppNavigation.shareContent(this,"Hello Buddy ! Use this app to increase Your Phone's Battery Health");
+
+                break;
+            case R.id.About_us:
+                AppNavigation.openWebsite(this,"https://sourbhsingh.github.io/wiseoptimise.github.io/about.html");
+                break;
+            case R.id.Contactus:
+                AppNavigation.openWebsite(this,"https://sourbhsingh.github.io/wiseoptimise.github.io/contact.html");
+                break;
+            // Add more cases for other menu items
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START); // Close the drawer after item selection
+        return true;
     }
 
     public void Settings(View view) {

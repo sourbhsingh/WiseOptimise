@@ -3,6 +3,7 @@ package com.example.wiseoptimise;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -106,13 +107,15 @@ public class OptimiseFragment extends Fragment implements View.OnClickListener{
 
     private void openBatterySaverSettings() {
         Intent intent = new Intent();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            intent.setAction(Settings.ACTION_BATTERY_SAVER_SETTINGS);
-        } else {
-            intent.setClassName("com.android.settings", "com.android.settings.appSettings$BatterySaverSettingsActivity");
-        }
+        intent.setAction(Settings.ACTION_BATTERY_SAVER_SETTINGS);
 
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            // Handle the case when the activity is not found on the device
+            intent = new Intent(Settings.ACTION_SETTINGS);
+            startActivity(intent);
+        }
     }
 
 }

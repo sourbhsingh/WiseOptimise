@@ -1,0 +1,13 @@
+<resources>
+    <style name="CustomTabStyle" parent="Widget.Design.TabLayout">
+        <item name="android:layout_height">42dp</item> <!-- Change the height value as per your requirement -->
+    </style>
+
+<style name="CustomTabIconStyle">
+<item name="android:width">20dp</item> <!-- Adjust the width value as per your requirement -->
+<item name="android:height">20dp</item> <!-- Adjust the height value as per your requirement -->
+
+</style>
+
+
+</resources>
