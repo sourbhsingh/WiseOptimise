@@ -92,7 +92,7 @@
         app:menu="@menu/main_menu"
         app:itemIconTint="@color/menu_item_color"
         app:itemTextColor="@color/menu_item_color"
-        app:itemBackground="@color/menu_item_selector"
+
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>
