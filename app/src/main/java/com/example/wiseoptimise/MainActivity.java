@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private BatteryLevelReceiver batteryLevelReceiver;
 
     TabLayout tab ;
     ViewPager viewPager ;
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        batteryLevelReceiver = new BatteryLevelReceiver();
+
         imageButton3 = (ImageButton) findViewById(R.id.imageButton3);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -64,5 +69,16 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Menu", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(batteryLevelReceiver, intentFilter);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(batteryLevelReceiver);
+    }
 }
