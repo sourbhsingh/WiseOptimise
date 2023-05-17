@@ -99,7 +99,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
-        style="@style/NavigationViewStyle"
+        style="@style/MyNavigationViewStyle"
 
         />
 
