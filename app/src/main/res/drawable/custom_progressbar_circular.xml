@@ -1,0 +1,21 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#9FD9A1" /> <!-- Change color to red (hex code: #FF0000) -->
+        </shape>
+    </item>
+    <item>
+        <rotate
+            android:fromDegrees="270"
+            android:toDegrees="270"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="ring">
+                <solid android:color="#FFFFFF" /> <!-- Change color to white (hex code: #FFFFFF) -->
+                <size
+                    android:width="4dp"
+                    android:height="4dp" /> <!-- Adjust the size of the ring -->
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

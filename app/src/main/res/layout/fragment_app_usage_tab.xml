@@ -8,20 +8,19 @@
     android:layout_marginTop="?attr/actionBarSize"
     android:layout_marginBottom="36dp"
     android:paddingBottom="40dp"
-    style="@style/ScreenBackground"
+    style="@style/CardViewStyle"
     >
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="617dp"
-
-        android:layout_gravity="center"
         style="@style/CardViewStyle"
+        android:layout_width="395dp"
+
+        android:layout_height="670dp"
+        android:layout_gravity="center"
         android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:outlineSpotShadowColor="#262135"
-        app:cardCornerRadius="8dp"
         android:layout_marginTop="13dp"
+        android:layout_marginEnd="6dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,17 +30,16 @@
 
         <ListView
             android:id="@+id/app_list"
-            android:layout_width="match_parent"
+            style="@style/CardViewStyle"
+            android:layout_width="380dp"
+            android:layout_height="656dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_height="match_parent"
-            android:divider="@drawable/divider"
             android:dividerHeight="5dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
             android:paddingStart="10dp"
+            android:paddingTop="8dp"
             android:paddingEnd="8dp"
-            style="@style/ScreenBackground"/>
+            android:paddingBottom="8dp" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
-    style="@style/ScreenBackground"
+    style="@style/CardViewStyle"
     >
 
     <ImageView
@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_marginStart="16dp">
+        android:layout_marginStart="16dp"
+        style="@style/CardViewStyle">
 
         <TextView
             android:id="@+id/app_name_text_view"
