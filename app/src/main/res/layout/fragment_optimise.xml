@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:background="#9FD9A1"
+        android:background="#EBFFD7"
         android:gravity="center_horizontal"
         android:padding="10sp"
         android:shadowColor="#0F1010"
@@ -84,7 +84,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/divider">
+                android:src="@drawable/baseline_rocket_24">
 
 
             </ImageView>
@@ -92,12 +92,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Keep battery" />
+                android:text="Optimise" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="above 80%" />
+                android:text="under 50%" />
 
 
         </LinearLayout>
@@ -113,7 +113,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/divider">
+                android:src="@drawable/battery_info_tab_24">
 
 
             </ImageView>
@@ -121,12 +121,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Keep battery" />
+                android:text="Charge on " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="above 80%" />
+                android:text="less than 20%" />
 
 
         </LinearLayout>
@@ -142,7 +142,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/divider">
+                android:src="@drawable/batter_80percent">
 
 
             </ImageView>
@@ -190,7 +190,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/divider">
+                android:src="@drawable/temp">
 
 
             </ImageView>
@@ -198,12 +198,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Keep battery" />
+                android:text="Beware of " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="above 80%" />
+                android:text="over heating" />
 
 
         </LinearLayout>
@@ -219,7 +219,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/divider">
+                android:src="@drawable/baseline_dark_mode_24">
 
 
             </ImageView>
@@ -227,12 +227,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Keep battery" />
+                android:text="     Use" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="above 80%" />
+                android:text="Dark Mode" />
 
 
         </LinearLayout>
@@ -248,7 +248,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/divider">
+                android:src="@drawable/sourceforcharge">
 
 
             </ImageView>
@@ -256,12 +256,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Keep battery" />
+                android:text="      Use" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="above 80%" />
+                android:text="good charger " />
 
 
         </LinearLayout>
